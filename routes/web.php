@@ -30,6 +30,4 @@ Route::prefix('/post') -> group(function () {
     Route::get('/delete/{id?}', 'UserController@delete')->where('id', '[0, 9]+');
 });
 
-
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
