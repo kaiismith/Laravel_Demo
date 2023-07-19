@@ -40,14 +40,4 @@ Route::prefix('/post') -> group(function () {
     Route::get('/delete/{id?}', [PostController::class, 'delete'])->where('id', '[0-9]+')->name('post.delete');
 });
 
-// Route::prefix('post')->group(function () {
-//     // Danh sách chuyên mục
-//     Route::get('/', [CategoriesController::class, 'list'])->name('user.list');
-
-//     // Lấy chi tiết 1 chuyên mục (Áp djng show form sửa chuyên mục)
-//     Route::get('/info/{id}', [CategoriesController::class, 'info'])->name('user.info')->where('id', '[0-9]+');
-
-
-// });
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
