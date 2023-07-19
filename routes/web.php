@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Mockery\Generator\StringManipulation\Pass\Pass;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +25,29 @@ Route::get('/', function () {
 });
 
 Route::prefix('/post') -> group(function () {
-    Route::get('/index', 'UserController@list')->name('user.list');
-    Route::get('/create', 'UserController@create')->name('user.create');
-    Route::get('/profile/{id?}', 'UserController@profile')->name('user.profile')->where('id', '[0,9]+');
-    Route::get('/update/{id?}', 'UserController@update')->where('id', '[0, 9]+');
-    Route::get('/delete/{id?}', 'UserController@delete')->where('id', '[0, 9]+');
+    Route::get('/index', [PostController::class, 'list'])->name('post.list');
+
+    Route::get('/create', [PostController::class, 'create'])->name('post.create');
+
+    Route::post('/create', [PostController::class, 'handleCreate']);
+
+    Route::get('/info/{id}', [PostController::class, 'info'])->name('post.info')->where('id', '[0-9]+');
+
+    Route::get('/update/{id}', [PostController::class, 'update'])->name('post.edit')->where('id', '[0-9]+');
+
+    Route::post('/update/{id}', [PostController::class, 'handleUpdate'])->where('id', '[0-9]+')->name('post.update');
+
+    Route::get('/delete/{id?}', [PostController::class, 'delete'])->where('id', '[0-9]+')->name('post.delete');
 });
+
+// Route::prefix('post')->group(function () {
+//     // Danh sách chuyên mục
+//     Route::get('/', [CategoriesController::class, 'list'])->name('user.list');
+
+//     // Lấy chi tiết 1 chuyên mục (Áp djng show form sửa chuyên mục)
+//     Route::get('/info/{id}', [CategoriesController::class, 'info'])->name('user.info')->where('id', '[0-9]+');
+
+
+// });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
