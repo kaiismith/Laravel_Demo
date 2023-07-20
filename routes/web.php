@@ -25,7 +25,9 @@ Route::get('/', function () {
 });
 
 Route::prefix('/post') -> group(function () {
-    Route::get('/index', [PostController::class, 'list'])->name('post.list');
+    Route::get('/index', [PostController::class, 'index'])->name('post.index');
+
+    Route::get('/list', [PostController::class, 'list'])->name('post.list');
 
     Route::get('/create', [PostController::class, 'create'])->name('post.create');
 

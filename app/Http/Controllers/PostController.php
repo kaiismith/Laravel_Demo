@@ -8,10 +8,15 @@ use App\Models\User;
 class PostController extends Controller
 {
 
+
+    public function index() {
+        return view('post.index');
+    }
+
     // List all database (using GET)
     public function list() {
         $posts = User::all();
-        return view('post.index ', compact('posts'));
+        return view('post.list ', compact('posts'));
     }
 
     // Show form to insert into database (using GET)
@@ -28,7 +33,7 @@ class PostController extends Controller
 
     // Show info based on ID (using GET)
     public function info($id) {
-        return 'Detailed Info: ' . $id; 
+        return view('post.info', compact('id'));
     }
 
     public function update($id) {
@@ -48,7 +53,6 @@ class PostController extends Controller
 
     // Delete info based on ID (using DELETE)
     public function delete($id) {
-
-        return "Delete " . $id;
+        return view('post.delete', compact('id'));
     }
 }
