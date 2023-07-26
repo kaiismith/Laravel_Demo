@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Mockery\Generator\StringManipulation\Pass\Pass;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +44,18 @@ Route::prefix('/post') -> group(function () {
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('users') -> group(function () {
+    Route::get('/create', [UserController::class, 'create']);
+
+    Route::post('/create', [UserController::class, 'store']);
+
+    Route::get('update/{id}', [UserController::class, 'edit']);
+    Route::post('update/{id}', [UserController::class, 'update']);
+
+    Route::get('/delete/{id}', [UserController::class, 'delete']);
+
+    // Read user
+    Route::get('/', [UserController::class, 'index']);
+});
+
