@@ -18,6 +18,9 @@
                     <li class="nav-item">
                       <a class="nav-link" href="{{route('post.delete', [$id])}}">Delete</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('post.list')}}">List</a>
+                    </li>
                   </ul>
             </div>
         </div>
