@@ -57,5 +57,7 @@ Route::prefix('users') -> group(function () {
 
     // Read user
     Route::get('/', [UserController::class, 'index']);
+
+    Route::get('/post', [UserController::class, 'getPost']);
 });
 

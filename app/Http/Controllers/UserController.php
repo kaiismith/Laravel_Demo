@@ -6,11 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\User;
 // Thêm thư viện để mã hóa password
 use Illuminate\Support\Facades\Hash;
+use App\Models\Post;
 
 class UserController extends Controller
 {
     public function create(){
         return view('users.create');
+    }
+
+    public function getPost() {
+        $id = User::find(5)->id;
+        $name = User::find(5)->name;
+        $post = User::find(5)->posts;
+        return view('users.post', compact('post', 'id', 'name'));
     }
 
     public function store(Request $request){
